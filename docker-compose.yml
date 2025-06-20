@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  moisture-monitor:
+    image: moisture-monitor:latest
+    ports:
+      - "8181:5000"
+    volumes:
+      - .:/app
