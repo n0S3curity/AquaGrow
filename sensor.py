@@ -5,20 +5,23 @@ import logging
 # Get a logger for this module
 logger = logging.getLogger(__name__)
 
+
 class Sensor:
     """
     Represents a single moisture sensor and its associated plant/pump.
     Manages its current state and historical data.
     """
+
     def __init__(self, name, moisture_threshold, watering_relay_pin, ip_address):
         self.name = name
+        self.ip_address = ''
         self.current_moisture = "N/A"
         self.last_updated = None
         self.status = "Initializing..."
         self.moisture_threshold = moisture_threshold
         self.watering_relay_pin = watering_relay_pin
         self.ip_address = ip_address
-        self.moisture_history = deque(maxlen=50) # Store last 50 readings for this sensor
+        self.moisture_history = deque(maxlen=50)  # Store last 50 readings for this sensor
 
     def update_moisture(self, value):
         """Updates the current moisture level and status for this sensor."""
@@ -36,6 +39,13 @@ class Sensor:
             self.status = "Invalid Data"
         logger.debug(f"{self.name}: Moisture updated: {self.current_moisture}, Status: {self.status}")
 
+    def update_ip(self, ip):
+        """Updates the IP address for a specific sensor."""
+        self.ip_address = ip
+        logger.info(f"Updated IP for sensor {self.name} to {ip}")
+
+
+
     def get_data(self):
         """Returns all data for this sensor."""
         return {
@@ -49,13 +59,15 @@ class Sensor:
             "moisture_history": list(self.moisture_history)
         }
 
+
 class SensorDataManager:
     """
     Manages all configured sensors.
     """
+
     def __init__(self, config_manager):
         self.config = config_manager
-        self.sensors = {} # Dictionary to hold Sensor objects, keyed by name
+        self.sensors = {}  # Dictionary to hold Sensor objects, keyed by name
         self.load_sensors_from_config()
         logger.info("SensorDataManager initialized for multiple sensors.")
 
@@ -71,7 +83,7 @@ class SensorDataManager:
             if name:
                 self.sensors[name] = Sensor(
                     name=name,
-                    moisture_threshold=s_config.get('moisture_threshold', 400), # Default if not specified
+                    moisture_threshold=s_config.get('moisture_threshold', 400),  # Default if not specified
                     watering_relay_pin=s_config.get('watering_relay_pin'),
                     ip_address=s_config.get('ip_address')
                 )
@@ -79,11 +91,15 @@ class SensorDataManager:
             else:
                 logger.error(f"Sensor configuration missing 'name': {s_config}")
 
-    def update_sensor_moisture(self, sensor_name, moisture_value):
+
+
+    def update_sensor_moisture(self, sensor_name, moisture_value, ip):
         """Updates moisture for a specific sensor."""
         sensor = self.sensors.get(sensor_name)
+
         if sensor:
             sensor.update_moisture(moisture_value)
+            sensor.update_ip(ip)
             return True
         else:
             logger.warning(f"Attempted to update unknown sensor: {sensor_name}")

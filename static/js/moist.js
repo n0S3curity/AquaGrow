@@ -51,10 +51,21 @@
                 </div>
                 <div class="flex justify-between items-center text-lg">
                     <span class="font-medium">Status:</span>
-                    <span class="text-xl font-semibold ${sensor.status.includes("DRY") ? 'text-red-500' : 'text-green-500'}">
+                    <span class="text-xl font-semibold ${sensor.status.includes("DRY") ? 'text-red-500 font-bold' : 'text-green-500'}">
                         ${sensor.status}
                     </span>
                 </div>
+
+
+
+                  <div class="flex justify-between items-center text-lg">
+                    <span class="font-medium">IP:</span>
+                    <span class="text-xl font-semibold ${sensor.ip_address ? 'text-gray-800' : 'text-red-600'}">
+                        ${sensor.ip_address ? sensor.ip_address : 'N/A'}
+                    </span>
+                </div>
+
+
                 <p class="text-xs text-gray-500">Last updated: ${sensor.last_updated ? new Date(sensor.last_updated).toLocaleTimeString() : '--'}</p>
                 <button data-sensor-name="${sensor.name}" class="water-single-btn ${buttonColor} text-white font-bold py-2 px-4 rounded-lg shadow transform transition duration-200 hover:scale-105 active:scale-95 flex items-center justify-center space-x-2">
                     ${getIconSVG('water', 'w-4 h-4 mr-2')} <!-- Replaced Lucide with inline SVG -->

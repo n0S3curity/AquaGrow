@@ -48,7 +48,8 @@ def simulate_sensor_data(sensor_data_manager, refresh_interval_ms):
             # Simulate slight variations
             change = random.randint(-20, 20)
             simulated_moisture[sensor_name] = max(0, min(1023, simulated_moisture[sensor_name] + change))
-            sensor_data_manager.update_sensor_moisture(sensor_name, simulated_moisture[sensor_name])
+            ip = '192.168.0.' + str(random.randint(1, 254))  # Simulate IP address for each sensor
+            sensor_data_manager.update_sensor_moisture(sensor_name, simulated_moisture[sensor_name],ip)
         time.sleep(refresh_interval_ms / 1000.0)
 
 # --- Server Start ---

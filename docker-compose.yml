@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
-  moisture-monitor:
-    image: moisture-monitor:latest
+  irrigation_server:
+    build: .
+    container_name: irrigation_server
     ports:
-      - "8181:5000"
-    volumes:
-      - .:/app
+      - "8181:5000"   # Map external port 8181 to internal 8181
+    restart: always

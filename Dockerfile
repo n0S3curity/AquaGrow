@@ -1,23 +1,20 @@
-# Use a slim Python image as a base for a smaller image size
-FROM python:3.9
+# Use official Python image
+FROM python:3.11
 
-# Set the working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Copy the requirements file and install Python dependencies
-# Using --no-cache-dir to prevent pip from storing downloaded packages
-# which keeps the image smaller.
+# Copy requirements (if available)
 COPY requirements.txt .
+
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of your application code into the container
-# This includes your main Flask app, config, logger, sensor, routes, and the static folder
+# Copy rest of the application
 COPY . .
 
-# Expose the port that your Flask application runs on
-# This should match SERVER_PORT in your config.py/main.py (default 5000)
-EXPOSE 5000
+# Expose Flask port (inside container)
+EXPOSE 8181
 
-# Command to run your Flask application when the container starts
-# Assuming your main Flask app file is named 'main.py'
+# Default command to run the Flask app
 CMD ["python", "main.py"]
