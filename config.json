@@ -1,0 +1,54 @@
+{
+  "Server": {
+    "host": "0.0.0.0",
+    "port": 5000
+  },
+  "Arduino": {
+    "expected_data_format": "JSON",
+    "moisture_unit": "Analog (0-1023)"
+  },
+  "GUI": {
+    "data_refresh_interval_ms": 2000,
+    "log_display_limit": 50
+  },
+  "Irrigation": {
+    "watering_duration_seconds": 5
+  },
+  "Sensors": [
+    {
+      "name": "PlantA",
+      "moisture_threshold": 400,
+      "watering_relay_pin": 27,
+      "ip_address": "192.168.1.101"
+    },
+    {
+      "name": "PlantB",
+      "moisture_threshold": 350,
+      "watering_relay_pin": 26,
+      "ip_address": "192.168.1.102"
+    },
+    {
+      "name": "PlantC",
+      "moisture_threshold": 450,
+      "watering_relay_pin": 25,
+      "ip_address": "192.168.1.103"
+    },
+    {
+      "name": "PlantD",
+      "moisture_threshold": 380,
+      "watering_relay_pin": 24,
+      "ip_address": "192.168.1.104"
+    },
+    {
+      "name": "PlantE",
+      "moisture_threshold": 420,
+      "watering_relay_pin": 23,
+      "ip_address": "192.168.1.105"
+    }
+  ],
+  "Telegram": {
+    "bot_token": "YOUR_TELEGRAM_BOT_TOKEN",
+    "chat_id": "YOUR_CHAT_ID",
+    "low_moisture_alert_interval_minutes": 60
+  }
+}

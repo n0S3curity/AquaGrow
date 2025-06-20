@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Plant Moisture Monitor Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        /* Custom scrollbar for log area */
+        .scrolled-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .scrolled-content::-webkit-scrollbar-track {
+            background: #e5e7eb;
+            border-radius: 10px;
+        }
+        .scrolled-content::-webkit-scrollbar-thumb {
+            background: #9ca3af;
+            border-radius: 10px;
+        }
+        .scrolled-content::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+    </style>
+    <!-- Chart.js for graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <!-- Removed Lucide Icons CDN and initialization script as requested -->
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center p-4">
+
+    <div class="container max-w-6xl w-full bg-white shadow-lg rounded-xl p-6 space-y-6">
+
+        <h1 class="text-4xl font-extrabold text-center text-green-700 mb-8 flex items-center justify-center space-x-3">
+            <span>Multi-Plant Moisture Dashboard</span>
+            <img src="/static/gifs/plant.gif" alt="Plant Icon" class="w-20 h-20" style="corner-radius: 50%;">
+        </h1>
+
+        <!-- Sensor Cards Section -->
+        <div id="sensorCardsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Sensor cards will be dynamically populated here -->
+            <p class="col-span-full text-center text-gray-500">Loading sensor data...</p>
+        </div>
+
+        <!-- Irrigation Graph Section -->
+        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Irrigation Trends for <span id="selectedSensorForGraph" class="text-blue-600">All Plants</span></h2>
+            <div class="flex justify-center mb-4">
+                <select id="graphSensorSelect" class="form-select block w-auto pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md shadow-sm">
+                    <option value="all">All Plants (Combined)</option>
+                    <!-- Sensor options will be dynamically populated -->
+                </select>
+            </div>
+            <div class="relative h-64">
+                <canvas id="moistureChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Logs Section -->
+        <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">System Logs</h2>
+            <div id="logContainer" class="bg-gray-50 p-4 rounded-md border border-gray-300 h-64 overflow-y-auto scrolled-content">
+                <!-- Log entries will be appended here -->
+                <p class="text-gray-500 text-sm">Logs will appear here...</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="/static/js/moist.js"></script>
+    <script>
+    // This script block remains empty because moist.js is now self-contained.
+    // If you were to add more scripts, they would go here.
+    </script>
+</body>
+</html>
+
+
