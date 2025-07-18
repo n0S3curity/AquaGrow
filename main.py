@@ -33,24 +33,26 @@ SERVER_PORT = config_manager.get('Server', 'port', 5000)
 DATA_REFRESH_INTERVAL_MS = config_manager.get('GUI', 'data_refresh_interval_ms', 2000)
 
 # --- Background Sensor Data Simulation (for multiple sensors) ---
-def simulate_sensor_data(sensor_data_manager, refresh_interval_ms):
-    """
-    Simulates incoming sensor data for all configured sensors.
-    In a real scenario, this would be replaced by actual data reception
-    from the Arduino via WiFi for each sensor.
-    """
-    logger.info("Starting multi-sensor data simulation thread...")
-    # Initialize random starting moisture for each sensor
-    simulated_moisture = {name: random.randint(200, 800) for name in sensor_data_manager.sensors.keys()}
+# def simulate_sensor_data(sensor_data_manager, refresh_interval_ms):
+#     """
+#     Simulates incoming sensor data for all configured sensors.
+#     In a real scenario, this would be replaced by actual data reception
+#     from the Arduino via WiFi for each sensor.
+#     """
+#     logger.info("Starting multi-sensor data simulation thread...")
+#     # Initialize random starting moisture for each sensor
+#     simulated_moisture = {name: random.randint(200, 800) for name in sensor_data_manager.sensors.keys()}
+#
+#     while True:
+#         for sensor_name in sensor_data_manager.sensors.keys():
+#             # Simulate slight variations
+#             change = random.randint(-20, 20)
+#             simulated_moisture[sensor_name] = max(0, min(1023, simulated_moisture[sensor_name] + change))
+#             ip = '192.168.0.' + str(random.randint(1, 254))  # Simulate IP address for each sensor
+#             sensor_data_manager.update_sensor_moisture(sensor_name, simulated_moisture[sensor_name],ip)
+#         time.sleep(refresh_interval_ms / 1000.0)
 
-    while True:
-        for sensor_name in sensor_data_manager.sensors.keys():
-            # Simulate slight variations
-            change = random.randint(-20, 20)
-            simulated_moisture[sensor_name] = max(0, min(1023, simulated_moisture[sensor_name] + change))
-            ip = '192.168.0.' + str(random.randint(1, 254))  # Simulate IP address for each sensor
-            sensor_data_manager.update_sensor_moisture(sensor_name, simulated_moisture[sensor_name],ip)
-        time.sleep(refresh_interval_ms / 1000.0)
+
 
 # --- Server Start ---
 if __name__ == '__main__':
@@ -59,18 +61,18 @@ if __name__ == '__main__':
         os.makedirs('static')
         logger.info("Created 'static' directory.")
 
-    # Start the multi-sensor data simulation thread
-    # Only start if there are sensors configured
-    if sensor_manager.sensors:
-        simulation_thread = threading.Thread(
-            target=simulate_sensor_data,
-            args=(sensor_manager, DATA_REFRESH_INTERVAL_MS),
-            daemon=True # Daemon threads exit when the main program exits
-        )
-        simulation_thread.start()
-        logger.info("Multi-sensor data simulation thread started.")
-    else:
-        logger.warning("No sensors configured. Skipping simulation thread.")
+    # # Start the multi-sensor data simulation thread
+    # # Only start if there are sensors configured
+    # if sensor_manager.sensors:
+    #     simulation_thread = threading.Thread(
+    #         target=update_sensors,
+    #         args=(sensor_manager, DATA_REFRESH_INTERVAL_MS),
+    #         daemon=True # Daemon threads exit when the main program exits
+    #     )
+    #     simulation_thread.start()
+    #     logger.info("Multi-sensor data simulation thread started.")
+    # else:
+    #     logger.warning("No sensors configured. Skipping simulation thread.")
 
 
     logger.info(f"Starting Flask server on http://{SERVER_HOST}:{SERVER_PORT}")

@@ -1,0 +1,6 @@
+{
+"Outside garden sensor": {
+  "ip": "192.0.0.100",
+  "moisture": 45
+}
+}

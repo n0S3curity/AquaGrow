@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 import random
@@ -8,6 +9,7 @@ from flask import jsonify, request, send_from_directory
 
 # Get a logger for this module
 logger = logging.getLogger(__name__)
+
 
 def register_routes(app, sensor_manager, config_manager):
     """
@@ -32,7 +34,34 @@ def register_routes(app, sensor_manager, config_manager):
     # API endpoint to get status for all sensors
     @app.route('/api/status', methods=['GET'])
     def get_all_sensor_status():
-        return jsonify(sensor_manager.get_all_sensors_data())
+        with open('sensors.json', 'r') as f:
+            sensor_data = json.load(f)
+        return jsonify(sensor_data)
+
+    @app.route('/api/update', methods=['GET'])
+    def update_sensor():
+        logger.info(f"Received request to update sensor data:  {request.args}")
+        new_data = {}
+        # open sensor data file and update sensor data by name
+        with open('sensors.json', 'r') as f:
+            sensor_data = json.load(f)
+            logger.info(f"sensors loaded: {sensor_data}")
+        new_data['sensor_name'] = request.args.get('name')
+        new_data['ip'] = request.args.get('ip')
+        new_data['moisture'] = request.args.get('moisture', type=int)
+        logger.info(f"sensor {new_data['sensor_name']} updating data:  {new_data}")
+        # if not sensor_name or not ip or not moisture:
+        #     return "missing params", 400
+        sensor_data[new_data['sensor_name']] = {
+            'ip': new_data['ip'],
+            'moisture': new_data['moisture']
+        }
+        # write updated sensor data to file
+        with open('sensors.json', 'w') as f:
+            json.dump(sensor_data, f, indent=4)
+            logger.info(f"sensors updated with new {sensor_data}")
+
+        return "OK", 200
 
     # API endpoint to get status for a single sensor
     @app.route('/api/status/<string:sensor_name>', methods=['GET'])
@@ -48,7 +77,7 @@ def register_routes(app, sensor_manager, config_manager):
     @app.route('/api/water', methods=['POST'])
     def water_sensors():
         data = request.get_json()
-        sensor_names_to_water = data.get('sensor_names', []) # Expect a list of sensor names
+        sensor_names_to_water = data.get('sensor_names', [])  # Expect a list of sensor names
 
         if not sensor_names_to_water:
             logger.warning("Water request received with no sensor names.")
@@ -80,8 +109,8 @@ def register_routes(app, sensor_manager, config_manager):
                     #     logger.error(f"Watering for {name} failed: No IP address configured.")
 
                     # --- Simulation for development without real Arduino ---
-                    time.sleep(1) # Simulate network delay
-                    if random.random() > 0.1: # 90% success rate simulation
+                    time.sleep(1)  # Simulate network delay
+                    if random.random() > 0.1:  # 90% success rate simulation
                         results[name] = {"status": "success", "message": f"Simulating watering for {name}"}
                         logger.info(f"Simulated watering for {name}.")
                     else:
@@ -104,7 +133,7 @@ def register_routes(app, sensor_manager, config_manager):
     # API endpoint to get logs
     @app.route('/api/logs', methods=['GET'])
     def get_logs():
-        from logger import log_buffer # Import log_buffer here to avoid circular dependency
+        from logger import log_buffer  # Import log_buffer here to avoid circular dependency
         limit = request.args.get('limit', type=int, default=LOG_DISPLAY_LIMIT)
         logs = jsonify(list(log_buffer)[-limit:])
         print("Returning logs:", logs.response[0])  # Debug print to see logs being returned
