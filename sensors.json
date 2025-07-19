@@ -50,6 +50,10 @@
             {
                 "timestamp": "2025-07-19T09:34:53Z",
                 "moisture": 777
+            },
+            {
+                "timestamp": "2025-07-19T09:44:05Z",
+                "moisture": 777
             }
         ]
     },
@@ -99,6 +103,10 @@
             },
             {
                 "timestamp": "2025-07-19T09:34:54Z",
+                "moisture": 720
+            },
+            {
+                "timestamp": "2025-07-19T09:44:06Z",
                 "moisture": 720
             }
         ]

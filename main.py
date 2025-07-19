@@ -76,4 +76,4 @@ if __name__ == '__main__':
 
 
     logger.info(f"Starting Flask server on http://{SERVER_HOST}:{SERVER_PORT}")
-    app.run(host=SERVER_HOST, port=SERVER_PORT, debug=app.config['DEBUG'], use_reloader=False) # use_reloader=False because of threading issues with Flask reloader
+    app.run(host=SERVER_HOST, port=SERVER_PORT, debug=False, use_reloader=False) # use_reloader=False because of threading issues with Flask reloader
