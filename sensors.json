@@ -1,6 +1,78 @@
 {
-"Outside garden sensor": {
-  "ip": "192.0.0.100",
-  "moisture": 45
-}
+    "Outside garden sensor": {
+        "ip": "192.0.0.100",
+        "moisture": 48,
+        "history": [
+            {
+                "timestamp": "2023-10-01T10:00:00Z",
+                "moisture": 650
+            },
+            {
+                "timestamp": "2023-10-01T11:00:00Z",
+                "moisture": 450
+            },
+            {
+                "timestamp": "2023-10-01T12:00:00Z",
+                "moisture": 300
+            },
+            {
+                "timestamp": "2023-10-01T13:00:00Z",
+                "moisture": 200
+            },
+            {
+                "timestamp": "2023-10-01T14:00:00Z",
+                "moisture": 150
+            },
+            {
+                "timestamp": "2025-07-19T09:28:46Z",
+                "moisture": 55
+            },
+            {
+                "timestamp": "2025-07-19T09:28:48Z",
+                "moisture": 48
+            }
+        ]
+    },
+    "Inside living room sensor": {
+        "ip": "192.0.0.101",
+        "moisture": 300,
+        "history": [
+            {
+                "timestamp": "2023-10-01T10:00:00Z",
+                "moisture": 800
+            },
+            {
+                "timestamp": "2023-10-01T11:00:00Z",
+                "moisture": 600
+            },
+            {
+                "timestamp": "2023-10-01T12:00:00Z",
+                "moisture": 300
+            }
+        ]
+    },
+    "Kitchen sensor": {
+        "ip": "192.0.0.102",
+        "moisture": 600,
+        "history": [
+            {
+                "timestamp": "2023-10-01T10:00:00Z",
+                "moisture": 800
+            },
+            {
+                "timestamp": "2023-10-01T11:00:00Z",
+                "moisture": 600
+            }
+        ]
+    },
+    "מטבח": {
+        "ip": "192.0.0.101",
+        "moisture": 720,
+        "history": [
+            {
+                "timestamp": "2025-07-19T09:28:47Z",
+                "moisture": 720
+            }
+        ]
+    }
 }

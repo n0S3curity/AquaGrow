@@ -1,3 +1,4 @@
+import datetime
 import json
 import logging
 import os
@@ -34,32 +35,68 @@ def register_routes(app, sensor_manager, config_manager):
     # API endpoint to get status for all sensors
     @app.route('/api/status', methods=['GET'])
     def get_all_sensor_status():
-        with open('sensors.json', 'r') as f:
-            sensor_data = json.load(f)
-        return jsonify(sensor_data)
+        try:
+            with open('sensors.json', 'r') as f:
+                sensor_data = json.load(f)
+            return jsonify(sensor_data), 200
+        except FileNotFoundError:
+            return jsonify({}), 200
+        except json.JSONDecodeError:
+            return jsonify({}), 500  # Or handle more gracefully
 
     @app.route('/api/update', methods=['GET'])
     def update_sensor():
-        logger.info(f"Received request to update sensor data:  {request.args}")
-        new_data = {}
-        # open sensor data file and update sensor data by name
-        with open('sensors.json', 'r') as f:
-            sensor_data = json.load(f)
-            logger.info(f"sensors loaded: {sensor_data}")
-        new_data['sensor_name'] = request.args.get('name')
-        new_data['ip'] = request.args.get('ip')
-        new_data['moisture'] = request.args.get('moisture', type=int)
-        logger.info(f"sensor {new_data['sensor_name']} updating data:  {new_data}")
-        # if not sensor_name or not ip or not moisture:
-        #     return "missing params", 400
-        sensor_data[new_data['sensor_name']] = {
-            'ip': new_data['ip'],
-            'moisture': new_data['moisture']
-        }
-        # write updated sensor data to file
+        logger.info(f"Received request to update sensor data: {request.args}")
+
+        sensor_name = request.args.get('name')
+        ip = request.args.get('ip')
+        moisture = request.args.get('moisture', type=int)
+
+        if not all([sensor_name, ip, moisture is not None]):
+            return "Missing parameters (name, ip, moisture)", 400
+
+        logger.info(f"Sensor {sensor_name} updating data: Name={sensor_name}, IP={ip}, Moisture={moisture}")
+
+        try:
+            # Open sensor data file
+            with open('sensors.json', 'r') as f:
+                sensor_data = json.load(f)
+                logger.info(f"Sensors loaded: {sensor_data}")
+        except FileNotFoundError:
+            sensor_data = {}
+            logger.info("sensors.json not found, initializing with empty data.")
+        except json.JSONDecodeError:
+            sensor_data = {}
+            logger.warning("sensors.json is empty or malformed, initializing with empty data.")
+
+        # Get current sensor data or initialize if new
+        current_sensor_info = sensor_data.get(sensor_name, {})
+
+        # Update IP and current moisture
+        current_sensor_info['ip'] = ip
+        current_sensor_info['moisture'] = moisture
+
+        # Prepare history entry
+        # Use ISO format for timestamp to be easily parsed by JavaScript Date object
+        timestamp = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
+        new_history_entry = {"timestamp": timestamp, "moisture": moisture}
+
+        # Retrieve existing history or create a new list
+        history = current_sensor_info.get('history', [])
+
+        # Append new moisture reading to history
+        history.append(new_history_entry)
+
+        # Store history back
+        current_sensor_info['history'] = history
+
+        # Update the main sensor_data dictionary
+        sensor_data[sensor_name] = current_sensor_info
+
+        # Write updated sensor data to file
         with open('sensors.json', 'w') as f:
             json.dump(sensor_data, f, indent=4)
-            logger.info(f"sensors updated with new {sensor_data}")
+            logger.info(f"Sensors updated with new data for {sensor_name}: {sensor_data[sensor_name]}")
 
         return "OK", 200
 
