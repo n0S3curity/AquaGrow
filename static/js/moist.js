@@ -49,6 +49,11 @@ function createSensorCard(sensor) {
 
     const buttonColor = status.includes("DRY") ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600';
 
+    // Get the last report timestamp from history if available
+    const lastReportTimestamp = sensor.moisture_history && sensor.moisture_history.length > 0
+        ? new Date(sensor.moisture_history[sensor.moisture_history.length - 1].timestamp).toLocaleString()
+        : 'N/A';
+
     return `
         <div class="bg-white p-6 rounded-xl shadow-lg border ${statusColor} flex flex-col space-y-3">
             <h3 class="text-2xl font-bold text-gray-800 mb-2">${sensor.name}</h3>
@@ -65,8 +70,6 @@ function createSensorCard(sensor) {
                 </span>
             </div>
 
-
-
               <div class="flex justify-between items-center text-lg">
                 <span class="font-medium">IP:</span>
                 <span class="text-xl font-semibold ${sensor.ip_address ? 'text-gray-800' : 'text-red-600'}">
@@ -74,8 +77,8 @@ function createSensorCard(sensor) {
                 </span>
             </div>
 
-
             <p class="text-xs text-gray-500">Last updated: ${sensor.last_updated ? new Date(sensor.last_updated).toLocaleTimeString() : '--'}</p>
+            <p class="text-xs text-gray-500">Last sensor Reported: ${lastReportTimestamp}</p>
             <button data-sensor-name="${sensor.name}" class="water-single-btn ${buttonColor} text-white font-bold py-2 px-4 rounded-lg shadow transform transition duration-200 hover:scale-105 active:scale-95 flex items-center justify-center space-x-2">
                 ${getIconSVG('water', 'w-4 h-4 mr-2')} <span>Water ${sensor.name}</span>
             </button>

@@ -33,13 +33,9 @@ if __name__ == "__main__":
     # before you execute this script.
 
     # Update "Outside garden sensor" with new moisture data
-    send_sensor_update("Outside garden sensor", "192.0.0.100", 55)
+    send_sensor_update("Outside garden sensor", "192.0.0.100", 777)
     time.sleep(1) # Wait a bit before sending another update
 
     # Update "Indoor plant A" with new moisture data
     send_sensor_update("Indoor plant A", "192.0.0.101", 720)
     time.sleep(1)
-
-    # You can call this function multiple times with different values
-    # to simulate a sensor sending data over time.
-    send_sensor_update("Outside garden sensor", "192.0.0.100", 48)
