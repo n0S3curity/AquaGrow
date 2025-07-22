@@ -5,7 +5,6 @@ import threading
 from flask import Flask
 
 from telegram_notifier import TelegramNotifier
-from config import Config
 from logger import logger
 from routes import register_routes
 

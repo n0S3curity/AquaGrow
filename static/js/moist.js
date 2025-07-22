@@ -32,51 +32,33 @@ function getIconSVG(iconType, className = '') {
     return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${defaultClasses} ${className}">${svgPath}</svg>`;
 }
 
-// Helper function to map a value from one range to another (like Arduino's map)
-function mapRange(value, inMin, inMax, outMin, outMax) {
-    return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
-}
-
 // Function to create a sensor card HTML
 function createSensorCard(sensor) {
-    // Define the sensor's dry and wet values for percentage calculation
-    const wetValue = 300; // Analog value when very wet
-    const dryValue = 900; // Analog value when very dry
+    // The sensor.current_moisture is now directly the percentage (0-100)
+    const moisturePercent = sensor.current_moisture;
 
-    // Calculate moisture percentage based on raw sensor value
-    let moisturePercent = mapRange(sensor.current_moisture, dryValue, wetValue, 0, 100);
-    moisturePercent = Math.max(0, Math.min(100, moisturePercent)); // Constrain between 0 and 100
+    // Determine status based on the new percentage thresholds
+    let status;
+    let statusColor;
+    let buttonColor;
+    let moistureTextColor;
 
-    // Determine status based on moisture value relative to new thresholds (raw values)
-    const status = sensor.current_moisture < 400 ? "Optimal" :
-                   (sensor.current_moisture >= 400 && sensor.current_moisture <= 750) ? "Mid-Moist" :
-                   "Dry"; // For moisture > 750
-
-    let statusColor, buttonColor;
-    let moistureTextColor = 'text-gray-800'; // Default text color for moisture value
-
-    switch (status) {
-        case "Optimal":
-            statusColor = 'bg-green-100 border-green-400 text-green-700';
-            buttonColor = 'bg-green-500 hover:bg-green-600';
-            moistureTextColor = 'text-green-600';
-            break;
-        case "Mid-Moist":
-            statusColor = 'bg-yellow-100 border-yellow-400 text-yellow-700';
-            buttonColor = 'bg-blue-500 hover:bg-blue-600'; // Blue button for mid-moist
-            moistureTextColor = 'text-yellow-600';
-            break;
-        case "Dry":
-            statusColor = 'bg-red-100 border-red-400 text-red-700';
-            buttonColor = 'bg-red-500 hover:bg-red-600';
-            moistureTextColor = 'text-red-600';
-            break;
-        default:
-            statusColor = 'bg-gray-100 border-gray-400 text-gray-700';
-            buttonColor = 'bg-gray-500 hover:bg-gray-600';
-            moistureTextColor = 'text-gray-800';
+    if (moisturePercent < 30) { // Under 30 is Dry
+        status = "Dry";
+        statusColor = 'bg-red-100 border-red-400 text-red-700';
+        buttonColor = 'bg-red-500 hover:bg-red-600';
+        moistureTextColor = 'text-red-600';
+    } else if (moisturePercent >= 30 && moisturePercent <= 45) { // From 30 to 45 is Mid
+        status = "Mid";
+        statusColor = 'bg-yellow-100 border-yellow-400 text-yellow-700';
+        buttonColor = 'bg-blue-500 hover:bg-blue-600'; // Blue button for mid-moist
+        moistureTextColor = 'text-yellow-600';
+    } else { // Above 45 is Wet
+        status = "Wet";
+        statusColor = 'bg-green-100 border-green-400 text-green-700';
+        buttonColor = 'bg-green-500 hover:bg-green-600';
+        moistureTextColor = 'text-green-600';
     }
-
 
     // Get the last report timestamp from history if available
     const lastReportTimestamp = sensor.moisture_history && sensor.moisture_history.length > 0
@@ -89,12 +71,12 @@ function createSensorCard(sensor) {
             <div class="flex justify-between items-center text-lg">
                 <span class="font-medium">Moisture:</span>
                 <span class="text-3xl font-extrabold ${moistureTextColor}">
-                    ${sensor.current_moisture} (${moisturePercent.toFixed(0)}%)
+                    ${moisturePercent.toFixed(0)}%
                 </span>
             </div>
             <div class="flex justify-between items-center text-lg">
                 <span class="font-medium">Status:</span>
-                <span class="text-xl font-semibold ${statusColor.includes("red") ? 'text-red-500 font-bold' : statusColor.includes("green") ? 'text-green-500' : 'text-yellow-500'}">
+                <span class="text-xl font-semibold ${moistureTextColor}">
                     ${status}
                 </span>
             </div>
@@ -157,7 +139,7 @@ function updateMoistureChart(selectedSensorName) {
             history.forEach(entry => allLabels.add(entry.timestamp));
             datasets.push({
                 label: sensor.name,
-                data: history.map(entry => entry.moisture), // Use 'moisture' from history
+                data: history.map(entry => entry.moisture), // Use 'moisture' from history (now percentage)
                 borderColor: colors[index % colors.length],
                 tension: 0.1,
                 fill: false,
@@ -165,12 +147,12 @@ function updateMoistureChart(selectedSensorName) {
                 pointBackgroundColor: colors[index % colors.length],
                 originalTimestamps: history.map(entry => entry.timestamp)
             });
-            // Only add threshold if it exists for the sensor
+            // Only add threshold if it exists for the sensor (now percentage threshold)
             if (sensor.moisture_threshold !== undefined && sensor.moisture_threshold !== null) {
                 datasets.push({
-                    label: `${sensor.name} Threshold`,
+                    label: `${sensor.name} Dry Threshold`, // Label adjusted to reflect percentage
                     data: new Array(history.length).fill(sensor.moisture_threshold),
-                    borderColor: colors[index % colors.length].replace('rgb', 'rgba').replace(')', ', 0.5)'),
+                    borderColor: 'rgb(255, 99, 132)', // Consistent red for dry threshold
                     borderWidth: 1,
                     borderDash: [2, 2],
                     fill: false,
@@ -211,13 +193,13 @@ function updateMoistureChart(selectedSensorName) {
                     maintainAspectRatio: false,
                     scales: {
                         y: {
-                            beginAtZero: false,
+                            beginAtZero: true, // Percentages start at 0
                             title: {
                                 display: true,
-                                text: 'Moisture Value'
+                                text: 'Moisture Percentage (%)' // Label adjusted
                             },
                             min: 0,
-                            max: 1023
+                            max: 100 // Max is 100%
                         },
                         x: {
                             title: {
@@ -253,13 +235,13 @@ function updateMoistureChart(selectedSensorName) {
             const date = new Date(entry.timestamp);
             return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         });
-        const data = dataToShow.map(entry => entry.moisture); // Use 'moisture' from history
+        const data = dataToShow.map(entry => entry.moisture); // Use 'moisture' from history (now percentage)
 
         if (moistureChart) {
             moistureChart.data.labels = labels;
             moistureChart.data.datasets = [
                 {
-                    label: 'Moisture Level',
+                    label: 'Moisture Percentage', // Label adjusted
                     data: data,
                     borderColor: 'rgb(75, 192, 192)',
                     tension: 0.1,
@@ -268,7 +250,7 @@ function updateMoistureChart(selectedSensorName) {
                     pointBackgroundColor: 'rgb(75, 192, 192)'
                 },
                 {
-                    label: 'Dry Threshold',
+                    label: 'Dry Threshold', // Label adjusted
                     data: threshold !== null ? new Array(data.length).fill(threshold) : [],
                     borderColor: threshold !== null ? 'rgb(255, 99, 132)' : 'rgba(0,0,0,0)',
                     borderWidth: 2,
@@ -285,7 +267,7 @@ function updateMoistureChart(selectedSensorName) {
                     labels: labels,
                     datasets: [
                         {
-                            label: 'Moisture Level',
+                            label: 'Moisture Percentage', // Label adjusted
                             data: data,
                             borderColor: 'rgb(75, 192, 192)',
                             tension: 0.1,
@@ -294,7 +276,7 @@ function updateMoistureChart(selectedSensorName) {
                             pointBackgroundColor: 'rgb(75, 192, 192)'
                         },
                         {
-                            label: 'Dry Threshold',
+                            label: 'Dry Threshold', // Label adjusted
                             data: threshold !== null ? new Array(data.length).fill(threshold) : [],
                             borderColor: threshold !== null ? 'rgb(255, 99, 132)' : 'rgba(0,0,0,0)',
                             borderWidth: 2,
@@ -309,13 +291,13 @@ function updateMoistureChart(selectedSensorName) {
                     maintainAspectRatio: false,
                     scales: {
                         y: {
-                            beginAtZero: false,
+                            beginAtZero: true, // Percentages start at 0
                             title: {
                                 display: true,
-                                text: 'Moisture Value'
+                                text: 'Moisture Percentage (%)' // Label adjusted
                             },
                             min: 0,
-                            max: 1023
+                            max: 100 // Max is 100%
                         },
                         x: {
                             title: {
@@ -350,7 +332,8 @@ async function fetchSensorStatus() {
                 name: key,
                 ip_address: sensor.ip,
                 current_moisture: sensor.moisture,
-                moisture_threshold: sensor.moisture_threshold || 700, // Default if not provided
+                // Default moisture_threshold to 30 (for dry) if not provided by backend
+                moisture_threshold: sensor.moisture_threshold !== undefined && sensor.moisture_threshold !== null ? sensor.moisture_threshold : 30,
                 last_updated: sensor.last_updated || new Date().toISOString(), // Default if not provided
                 moisture_history: sensor.history || [] // Use 'history' from the new JSON structure
             };
