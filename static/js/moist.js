@@ -32,22 +32,51 @@ function getIconSVG(iconType, className = '') {
     return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${defaultClasses} ${className}">${svgPath}</svg>`;
 }
 
+// Helper function to map a value from one range to another (like Arduino's map)
+function mapRange(value, inMin, inMax, outMin, outMax) {
+    return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+}
+
 // Function to create a sensor card HTML
 function createSensorCard(sensor) {
-    // Determine status based on moisture value relative to a threshold (e.g., 500 for DRY)
-    // Assuming a threshold is available, or setting a default.
-    // For this example, let's assume 'DRY' if moisture is below 300, 'Optimal' above 700, otherwise 'Moderate'.
-    // Use sensor.moisture_threshold if available, otherwise default to 500
-    const effectiveThreshold = sensor.moisture_threshold !== undefined && sensor.moisture_threshold !== null ? sensor.moisture_threshold : 500;
+    // Define the sensor's dry and wet values for percentage calculation
+    const wetValue = 300; // Analog value when very wet
+    const dryValue = 900; // Analog value when very dry
 
-    const status = sensor.current_moisture < effectiveThreshold ? "DRY" :
-                   sensor.current_moisture >= 700 ? "Optimal" : "Moderate";
+    // Calculate moisture percentage based on raw sensor value
+    let moisturePercent = mapRange(sensor.current_moisture, dryValue, wetValue, 0, 100);
+    moisturePercent = Math.max(0, Math.min(100, moisturePercent)); // Constrain between 0 and 100
 
-    const statusColor = status.includes("DRY") ? 'bg-red-100 border-red-400 text-red-700' :
-                        status.includes("Optimal") ? 'bg-green-100 border-green-400 text-green-700' :
-                        'bg-blue-100 border-blue-400 text-blue-700';
+    // Determine status based on moisture value relative to new thresholds (raw values)
+    const status = sensor.current_moisture < 400 ? "Optimal" :
+                   (sensor.current_moisture >= 400 && sensor.current_moisture <= 750) ? "Mid-Moist" :
+                   "Dry"; // For moisture > 750
 
-    const buttonColor = status.includes("DRY") ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600';
+    let statusColor, buttonColor;
+    let moistureTextColor = 'text-gray-800'; // Default text color for moisture value
+
+    switch (status) {
+        case "Optimal":
+            statusColor = 'bg-green-100 border-green-400 text-green-700';
+            buttonColor = 'bg-green-500 hover:bg-green-600';
+            moistureTextColor = 'text-green-600';
+            break;
+        case "Mid-Moist":
+            statusColor = 'bg-yellow-100 border-yellow-400 text-yellow-700';
+            buttonColor = 'bg-blue-500 hover:bg-blue-600'; // Blue button for mid-moist
+            moistureTextColor = 'text-yellow-600';
+            break;
+        case "Dry":
+            statusColor = 'bg-red-100 border-red-400 text-red-700';
+            buttonColor = 'bg-red-500 hover:bg-red-600';
+            moistureTextColor = 'text-red-600';
+            break;
+        default:
+            statusColor = 'bg-gray-100 border-gray-400 text-gray-700';
+            buttonColor = 'bg-gray-500 hover:bg-gray-600';
+            moistureTextColor = 'text-gray-800';
+    }
+
 
     // Get the last report timestamp from history if available
     const lastReportTimestamp = sensor.moisture_history && sensor.moisture_history.length > 0
@@ -59,13 +88,13 @@ function createSensorCard(sensor) {
             <h3 class="text-2xl font-bold text-gray-800 mb-2">${sensor.name}</h3>
             <div class="flex justify-between items-center text-lg">
                 <span class="font-medium">Moisture:</span>
-                <span class="text-3xl font-extrabold ${status.includes("DRY") ? 'text-red-600' : 'text-green-600'}">
-                    ${sensor.current_moisture}
+                <span class="text-3xl font-extrabold ${moistureTextColor}">
+                    ${sensor.current_moisture} (${moisturePercent.toFixed(0)}%)
                 </span>
             </div>
             <div class="flex justify-between items-center text-lg">
                 <span class="font-medium">Status:</span>
-                <span class="text-xl font-semibold ${status.includes("DRY") ? 'text-red-500 font-bold' : 'text-green-500'}">
+                <span class="text-xl font-semibold ${statusColor.includes("red") ? 'text-red-500 font-bold' : statusColor.includes("green") ? 'text-green-500' : 'text-yellow-500'}">
                     ${status}
                 </span>
             </div>
@@ -321,7 +350,7 @@ async function fetchSensorStatus() {
                 name: key,
                 ip_address: sensor.ip,
                 current_moisture: sensor.moisture,
-                moisture_threshold: sensor.moisture_threshold || 500, // Default if not provided
+                moisture_threshold: sensor.moisture_threshold || 700, // Default if not provided
                 last_updated: sensor.last_updated || new Date().toISOString(), // Default if not provided
                 moisture_history: sensor.history || [] // Use 'history' from the new JSON structure
             };

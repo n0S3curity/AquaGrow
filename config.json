@@ -15,8 +15,8 @@
     "watering_duration_seconds": 5
   },
   "Telegram": {
-    "bot_token": "YOUR_TELEGRAM_BOT_TOKEN",
-    "chat_id": "YOUR_CHAT_ID",
+    "bot_token": "8165597496:AAHuaHS7dFlzV0yuzUrEv34HlqtT3Ha7lxQ",
+    "chat_id": "1036024678",
     "low_moisture_alert_interval_minutes": 60
   }
 }

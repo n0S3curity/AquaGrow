@@ -12,7 +12,7 @@ from flask import jsonify, request, send_from_directory
 logger = logging.getLogger(__name__)
 
 
-def register_routes(app, sensor_manager, config_manager):
+def register_routes(app, config_manager):
     """
     Registers all Flask routes with the given app instance.
     """
@@ -61,7 +61,7 @@ def register_routes(app, sensor_manager, config_manager):
             # Open sensor data file
             with open('sensors.json', 'r') as f:
                 sensor_data = json.load(f)
-                logger.info(f"Sensors loaded: {sensor_data}")
+                # logger.info(f"Sensors loaded: {sensor_data}")
         except FileNotFoundError:
             sensor_data = {}
             logger.info("sensors.json not found, initializing with empty data.")
@@ -96,27 +96,15 @@ def register_routes(app, sensor_manager, config_manager):
         # Write updated sensor data to file
         with open('sensors.json', 'w') as f:
             json.dump(sensor_data, f, indent=4)
-            logger.info(f"Sensors updated with new data for {sensor_name}: {sensor_data[sensor_name]}")
+            # logger.info(f"Sensors updated with new data for {sensor_name}: {sensor_data[sensor_name]}")
 
         return "OK", 200
 
-    # API endpoint to get status for a single sensor
-    @app.route('/api/status/<string:sensor_name>', methods=['GET'])
-    def get_single_sensor_status(sensor_name):
-        data = sensor_manager.get_sensor_data(sensor_name)
-        if data:
-            return jsonify(data)
-        else:
-            logger.warning(f"Request for status of unknown sensor: {sensor_name}")
-            return jsonify({"message": f"Sensor '{sensor_name}' not found"}), 404
-
-
-    # API endpoint to get logs
     @app.route('/api/logs', methods=['GET'])
     def get_logs():
         from logger import log_buffer  # Import log_buffer here to avoid circular dependency
         limit = request.args.get('limit', type=int, default=LOG_DISPLAY_LIMIT)
         logs = jsonify(list(log_buffer)[-limit:])
-        print("Returning logs:", logs.response[0])  # Debug print to see logs being returned
+        # print("Returning logs:", logs.response[0])  # Debug print to see logs being returned
         return logs
 
