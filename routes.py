@@ -17,11 +17,6 @@ def register_routes(app,config):
     Registers all Flask routes with the given app instance.
     """
 
-    SERVER_HOST = config.get('Server', 'host', '0.0.0.0')
-    SERVER_PORT = config.get('Server', 'port', 5000)
-    WATERING_DURATION = config.get('Irrigation', 'watering_duration_seconds', 5)
-    LOG_DISPLAY_LIMIT = config.get('GUI', 'log_display_limit', 50)
-
     # Serve the main dashboard HTML file
     @app.route('/')
     def index():

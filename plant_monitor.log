@@ -68,3 +68,41 @@
 2025-07-22 16:06:52,704 - INFO - Configuration loaded from config.json
 2025-07-22 16:08:22,722 - INFO - Global logging initialized.
 2025-07-22 16:08:54,682 - INFO - Global logging initialized.
+2025-07-22 17:10:00,967 - INFO - Global logging initialized.
+2025-07-22 17:10:20,721 - INFO - Global logging initialized.
+2025-07-22 17:10:40,462 - INFO - Global logging initialized.
+2025-07-22 17:10:48,001 - INFO - Global logging initialized.
+2025-07-22 17:11:02,191 - INFO - Global logging initialized.
+2025-07-22 17:11:02,267 - INFO - Starting Flask server on http://{'host': '0.0.0.0', 'port': 5000}:{'host': '0.0.0.0', 'port': 5000}
+2025-07-22 17:11:53,229 - INFO - Global logging initialized.
+2025-07-22 17:11:53,305 - INFO - Starting Flask server on http://{'host': '0.0.0.0', 'port': '5000'}:{'host': '0.0.0.0', 'port': '5000'}
+2025-07-22 17:12:06,861 - INFO - Global logging initialized.
+2025-07-22 17:12:28,152 - INFO - Global logging initialized.
+2025-07-22 17:14:06,690 - INFO - Global logging initialized.
+2025-07-22 17:14:10,911 - INFO - Global logging initialized.
+2025-07-22 17:14:10,985 - INFO - Starting Flask server on http://0.0.0.0:5000
+2025-07-22 17:14:10,999 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.23:5000
+2025-07-22 17:14:10,999 - INFO - [33mPress CTRL+C to quit[0m
+2025-07-22 17:14:25,430 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 101, in get_logs
+    limit = request.args.get('limit', type=int, default=LOG_DISPLAY_LIMIT)
+                                                        ^^^^^^^^^^^^^^^^^
+NameError: name 'LOG_DISPLAY_LIMIT' is not defined
+2025-07-22 17:14:25,431 - INFO - 192.168.3.23 - - [22/Jul/2025 17:14:25] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:14:25,434 - INFO - 192.168.3.23 - - [22/Jul/2025 17:14:25] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -

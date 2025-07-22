@@ -14,11 +14,11 @@ def main():
     with open('config.json', 'r') as f:
         config = json.load(f)
     app = Flask(__name__)
-    register_routes(app)
+    register_routes(app,config)
 
-    SERVER_HOST = config.get('Server', 'host', '0.0.0.0')
-    SERVER_PORT = config.get('Server', 'port', 5000)
-    DATA_REFRESH_INTERVAL_MS = config.get('GUI', 'data_refresh_interval_ms', 2000)
+    SERVER_HOST = config.get('Server', {}).get('host')
+    SERVER_PORT = config.get('Server', {}).get('port')
+
     with open('config.json', 'r') as f:
         config = json.load(f)
 
