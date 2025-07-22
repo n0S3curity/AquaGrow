@@ -98,7 +98,7 @@ def register_routes(app,config):
     @app.route('/api/logs', methods=['GET'])
     def get_logs():
         from logger import log_buffer  # Import log_buffer here to avoid circular dependency
-        limit = request.args.get('limit', type=int, default=LOG_DISPLAY_LIMIT)
+        limit = request.args.get('limit', type=int, default=50)
         logs = jsonify(list(log_buffer)[-limit:])
         # print("Returning logs:", logs.response[0])  # Debug print to see logs being returned
         return logs

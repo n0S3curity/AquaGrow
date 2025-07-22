@@ -106,3 +106,498 @@ Traceback (most recent call last):
 NameError: name 'LOG_DISPLAY_LIMIT' is not defined
 2025-07-22 17:14:25,431 - INFO - 192.168.3.23 - - [22/Jul/2025 17:14:25] "GET /api/status HTTP/1.1" 200 -
 2025-07-22 17:14:25,434 - INFO - 192.168.3.23 - - [22/Jul/2025 17:14:25] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:21:49,431 - INFO - Global logging initialized.
+2025-07-22 17:21:49,508 - INFO - Starting Flask server on http://0.0.0.0:5000
+2025-07-22 17:21:49,518 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.23:5000
+2025-07-22 17:21:49,518 - INFO - [33mPress CTRL+C to quit[0m
+2025-07-22 17:21:49,717 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:49] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:21:51,011 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:51] "[36mGET / HTTP/1.1[0m" 304 -
+2025-07-22 17:21:51,014 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:51] "[36mGET / HTTP/1.1[0m" 304 -
+2025-07-22 17:21:51,106 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:51] "[36mGET /static/gifs/plant.gif HTTP/1.1[0m" 304 -
+2025-07-22 17:21:51,106 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:51] "[36mGET /static/js/moist.js HTTP/1.1[0m" 304 -
+2025-07-22 17:21:51,113 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:51] "[36mGET /static/gifs/plant.gif HTTP/1.1[0m" 304 -
+2025-07-22 17:21:51,128 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:51] "[36mGET /static/js/moist.js HTTP/1.1[0m" 304 -
+2025-07-22 17:21:51,175 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:51] "GET /static/js/moist.js HTTP/1.1" 200 -
+2025-07-22 17:21:51,183 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:51] "[36mGET /static/js/moist.js HTTP/1.1[0m" 304 -
+2025-07-22 17:21:51,358 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 101, in get_logs
+    limit = request.args.get('limit', type=int, default=LOG_DISPLAY_LIMIT)
+                                                        ^^^^^^^^^^^^^^^^^
+NameError: name 'LOG_DISPLAY_LIMIT' is not defined
+2025-07-22 17:21:51,359 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:51] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:21:51,360 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:51] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:21:51,497 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 101, in get_logs
+    limit = request.args.get('limit', type=int, default=LOG_DISPLAY_LIMIT)
+                                                        ^^^^^^^^^^^^^^^^^
+NameError: name 'LOG_DISPLAY_LIMIT' is not defined
+2025-07-22 17:21:51,498 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:51] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:21:51,499 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:51] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:21:53,425 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 101, in get_logs
+    limit = request.args.get('limit', type=int, default=LOG_DISPLAY_LIMIT)
+                                                        ^^^^^^^^^^^^^^^^^
+NameError: name 'LOG_DISPLAY_LIMIT' is not defined
+2025-07-22 17:21:53,425 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:53] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:21:53,426 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:53] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:21:56,430 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:56] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:21:57,436 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:57] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:21:58,956 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:58] "[36mGET / HTTP/1.1[0m" 304 -
+2025-07-22 17:21:58,989 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:58] "[36mGET /static/gifs/plant.gif HTTP/1.1[0m" 304 -
+2025-07-22 17:21:58,990 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:58] "[36mGET /static/js/moist.js HTTP/1.1[0m" 304 -
+2025-07-22 17:21:59,003 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:59] "[36mGET /static/js/moist.js HTTP/1.1[0m" 304 -
+2025-07-22 17:21:59,150 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 101, in get_logs
+    limit = request.args.get('limit', type=int, default=LOG_DISPLAY_LIMIT)
+                                                        ^^^^^^^^^^^^^^^^^
+NameError: name 'LOG_DISPLAY_LIMIT' is not defined
+2025-07-22 17:21:59,151 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:59] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:21:59,152 - INFO - 192.168.3.23 - - [22/Jul/2025 17:21:59] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:22:01,436 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 101, in get_logs
+    limit = request.args.get('limit', type=int, default=LOG_DISPLAY_LIMIT)
+                                                        ^^^^^^^^^^^^^^^^^
+NameError: name 'LOG_DISPLAY_LIMIT' is not defined
+2025-07-22 17:22:01,436 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:01] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:01,436 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:01] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:22:04,148 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:04] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:06,438 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:06] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:09,426 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 101, in get_logs
+    limit = request.args.get('limit', type=int, default=LOG_DISPLAY_LIMIT)
+                                                        ^^^^^^^^^^^^^^^^^
+NameError: name 'LOG_DISPLAY_LIMIT' is not defined
+2025-07-22 17:22:09,426 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:09] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:09,426 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:09] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:22:11,428 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 101, in get_logs
+    limit = request.args.get('limit', type=int, default=LOG_DISPLAY_LIMIT)
+                                                        ^^^^^^^^^^^^^^^^^
+NameError: name 'LOG_DISPLAY_LIMIT' is not defined
+2025-07-22 17:22:11,428 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:11] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:11,429 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:11] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:22:14,424 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:14] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:16,457 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:16] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:19,435 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 101, in get_logs
+    limit = request.args.get('limit', type=int, default=LOG_DISPLAY_LIMIT)
+                                                        ^^^^^^^^^^^^^^^^^
+NameError: name 'LOG_DISPLAY_LIMIT' is not defined
+2025-07-22 17:22:19,436 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:19] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:19,436 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:19] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:22:21,427 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 101, in get_logs
+    limit = request.args.get('limit', type=int, default=LOG_DISPLAY_LIMIT)
+                                                        ^^^^^^^^^^^^^^^^^
+NameError: name 'LOG_DISPLAY_LIMIT' is not defined
+2025-07-22 17:22:21,428 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:21] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:21,428 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:21] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:22:24,437 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:24] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:25,425 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 101, in get_logs
+    limit = request.args.get('limit', type=int, default=LOG_DISPLAY_LIMIT)
+                                                        ^^^^^^^^^^^^^^^^^
+NameError: name 'LOG_DISPLAY_LIMIT' is not defined
+2025-07-22 17:22:25,426 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:25] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:25,426 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:25] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:22:26,430 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:26] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:29,438 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 101, in get_logs
+    limit = request.args.get('limit', type=int)
+                                                
+NameError: name 'LOG_DISPLAY_LIMIT' is not defined
+2025-07-22 17:22:29,438 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:29] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:29,439 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:29] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:22:31,425 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 101, in get_logs
+    limit = request.args.get('limit', type=int)
+                                                
+NameError: name 'LOG_DISPLAY_LIMIT' is not defined
+2025-07-22 17:22:31,425 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:31] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:31,426 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:31] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:22:34,036 - INFO - Global logging initialized.
+2025-07-22 17:22:34,114 - INFO - Starting Flask server on http://0.0.0.0:5000
+2025-07-22 17:22:34,124 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.23:5000
+2025-07-22 17:22:34,125 - INFO - [33mPress CTRL+C to quit[0m
+2025-07-22 17:22:34,437 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:34] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:35,882 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:35] "[36mGET / HTTP/1.1[0m" 304 -
+2025-07-22 17:22:35,931 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:35] "[36mGET /static/gifs/plant.gif HTTP/1.1[0m" 304 -
+2025-07-22 17:22:35,934 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:35] "[36mGET /static/js/moist.js HTTP/1.1[0m" 304 -
+2025-07-22 17:22:35,946 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:35] "[36mGET /static/js/moist.js HTTP/1.1[0m" 304 -
+2025-07-22 17:22:35,995 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 102, in get_logs
+    logs = jsonify(list(log_buffer)[-limit:])
+                                    ^^^^^^
+TypeError: bad operand type for unary -: 'NoneType'
+2025-07-22 17:22:35,996 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:35] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:35,997 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:35] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:22:36,426 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:36] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:41,434 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 102, in get_logs
+    logs = jsonify(list(log_buffer)[-limit:])
+                                    ^^^^^^
+TypeError: bad operand type for unary -: 'NoneType'
+2025-07-22 17:22:41,434 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:41] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:41,435 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:41] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:22:41,437 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:41] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:46,430 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 102, in get_logs
+    logs = jsonify(list(log_buffer)[-limit:])
+                                    ^^^^^^
+TypeError: bad operand type for unary -: 'NoneType'
+2025-07-22 17:22:46,430 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:46] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:46,431 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:46] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:22:46,433 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:46] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:51,430 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 102, in get_logs
+    logs = jsonify(list(log_buffer)[-limit:])
+                                    ^^^^^^
+TypeError: bad operand type for unary -: 'NoneType'
+2025-07-22 17:22:51,430 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:51] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:51,431 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:51] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:22:51,433 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:51] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:56,435 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 102, in get_logs
+    logs = jsonify(list(log_buffer)[-limit:])
+                                    ^^^^^^
+TypeError: bad operand type for unary -: 'NoneType'
+2025-07-22 17:22:56,436 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:56] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:22:56,436 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:56] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:22:56,439 - INFO - 192.168.3.23 - - [22/Jul/2025 17:22:56] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:01,429 - ERROR - Exception on /api/logs [GET]
+Traceback (most recent call last):
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\AppData\Local\Programs\Python\Python311\Lib\site-packages\flask\app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Maor2\Desktop\development\AquaGrow\routes.py", line 102, in get_logs
+    logs = jsonify(list(log_buffer)[-limit:])
+                                    ^^^^^^
+TypeError: bad operand type for unary -: 'NoneType'
+2025-07-22 17:23:01,429 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:01] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:01,430 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:01] "[35m[1mGET /api/logs HTTP/1.1[0m" 500 -
+2025-07-22 17:23:01,432 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:01] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:03,769 - INFO - Global logging initialized.
+2025-07-22 17:23:03,848 - INFO - Starting Flask server on http://0.0.0.0:5000
+2025-07-22 17:23:03,861 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.3.23:5000
+2025-07-22 17:23:03,862 - INFO - [33mPress CTRL+C to quit[0m
+2025-07-22 17:23:05,981 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:05] "[36mGET / HTTP/1.1[0m" 304 -
+2025-07-22 17:23:06,035 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:06] "[36mGET /static/gifs/plant.gif HTTP/1.1[0m" 304 -
+2025-07-22 17:23:06,037 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:06] "[36mGET /static/js/moist.js HTTP/1.1[0m" 304 -
+2025-07-22 17:23:06,055 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:06] "[36mGET /static/js/moist.js HTTP/1.1[0m" 304 -
+2025-07-22 17:23:06,087 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:06] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:23:06,087 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:06] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:06,434 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:06] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:11,436 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:11] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:23:11,436 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:11] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:11,438 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:11] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:16,433 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:16] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:16,434 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:16] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:23:16,436 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:16] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:21,088 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:21] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:24,117 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:24] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:24,119 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:24] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:23:26,084 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:26] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:23:26,084 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:26] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:31,089 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:31] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:36,083 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:36] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:36,083 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:36] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:23:41,435 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:41] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:46,434 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:46] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:23:46,435 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:46] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:51,087 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:51] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:23:56,085 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:56] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:23:56,085 - INFO - 192.168.3.23 - - [22/Jul/2025 17:23:56] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:24:01,085 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:01] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:24:06,262 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:06] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:24:06,267 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:06] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:24:11,534 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:11] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:24:16,087 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:16] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:24:16,087 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:16] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:24:21,086 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:21] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:24:26,085 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:26] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:24:26,085 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:26] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:24:31,082 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:31] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:24:36,086 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:36] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:24:36,086 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:36] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:24:41,083 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:41] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:24:46,091 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:46] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:24:46,091 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:46] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:24:51,082 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:51] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:24:56,082 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:56] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:24:56,082 - INFO - 192.168.3.23 - - [22/Jul/2025 17:24:56] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:25:01,084 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:01] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:25:06,085 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:06] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:25:06,086 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:06] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:25:11,087 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:11] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:25:16,088 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:16] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:25:16,089 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:16] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:25:21,088 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:21] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:25:26,082 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:26] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:25:26,082 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:26] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:25:31,093 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:31] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:25:36,083 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:36] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:25:36,083 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:36] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:25:41,088 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:41] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:25:46,084 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:46] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:25:46,084 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:46] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:25:51,086 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:51] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:25:56,091 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:56] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:25:56,092 - INFO - 192.168.3.23 - - [22/Jul/2025 17:25:56] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:26:01,082 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:01] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:26:06,082 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:06] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:26:06,082 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:06] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:26:11,087 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:11] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:26:16,083 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:16] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:26:16,083 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:16] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:26:21,091 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:21] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:26:26,090 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:26] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:26:26,091 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:26] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:26:31,087 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:31] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:26:36,089 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:36] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:26:36,089 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:36] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:26:41,082 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:41] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:26:46,084 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:46] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:26:46,084 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:46] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:26:51,090 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:51] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:26:56,088 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:56] "GET /api/logs HTTP/1.1" 200 -
+2025-07-22 17:26:56,088 - INFO - 192.168.3.23 - - [22/Jul/2025 17:26:56] "GET /api/status HTTP/1.1" 200 -
+2025-07-22 17:27:01,089 - INFO - 192.168.3.23 - - [22/Jul/2025 17:27:01] "GET /api/status HTTP/1.1" 200 -
